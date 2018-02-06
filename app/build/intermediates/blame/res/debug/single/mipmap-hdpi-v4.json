@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\background2.jpg",
+        "source": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\src\\main\\res\\mipmap-hdpi\\background2.jpg"
+    },
+    {
+        "merged": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\background1.jpg",
+        "source": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\src\\main\\res\\mipmap-hdpi\\background1.jpg"
+    },
+    {
+        "merged": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\background.jpg",
+        "source": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\src\\main\\res\\mipmap-hdpi\\background.jpg"
+    },
+    {
+        "merged": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_main_background.jpg",
+        "source": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\src\\main\\res\\mipmap-hdpi\\ic_main_background.jpg"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\ic_launcher_round.png",
+        "source": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\ic_add.png",
+        "source": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_add.png"
+    },
+    {
+        "merged": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\ic_launcher.png",
+        "source": "C:\\Users\\govin\\Desktop\\WeatherControl\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    }
+]
