@@ -75,7 +75,6 @@
                     android:textSize="70sp"
                     android:textStyle="bold"
                     android:visibility="visible"
-                    android:text="21"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="parent"

@@ -29,38 +29,41 @@ import com.dev.maks.weathercontrol.view.weatherOfLocation.WeatherOfLocationActiv
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
+
+import static butterknife.OnTextChanged.Callback.AFTER_TEXT_CHANGED;
+
 public class NewLocationActivity extends BaseActivity implements NewLocationView {
 
-    private NewLocationPresenter locationPresenter;
+    @BindView(R.id.inputLocation)
+    EditText inputLocation;
 
-    private EditText inputLocation;
+    @BindView(R.id.loadingIndicator)
+    ProgressBar loadingIndicator;
+
+    @BindView(R.id.recyclerOfFoundLocations)
+    RecyclerView recyclerOfFoundLocations;
+
+    private NewLocationPresenter locationPresenter;
     private RecyclerFoundedLocationsAdapter recyclerAdapter;
-    private ProgressBar loadingIndicator;
+    private StartSearchLocation startSearchLocation = new StartSearchLocation(null);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_new_location);
+        ButterKnife.bind(this);
 
         if (locationPresenter == null) {
             locationPresenter = new NewLocationPresenter(this);
         }
 
         initToolbar();
-        initEditLocation();
         initRecycler();
-        initLoadingIndicator();
         addButtonHome();
-    }
-
-    private void initEditLocation() {
-        inputLocation = (EditText) findViewById(R.id.inputLocation);
-        inputLocation.addTextChangedListener(new EditLocationChangeListener());
-    }
-
-    public void initLoadingIndicator() {
-        loadingIndicator = (ProgressBar) findViewById(R.id.loadingIndicator);
     }
 
     private void addButtonHome() {
@@ -85,8 +88,6 @@ public class NewLocationActivity extends BaseActivity implements NewLocationView
 
     @Override
     public void initRecycler() {
-        RecyclerView recyclerOfFoundLocations = (RecyclerView) findViewById(R.id.recyclerOfFoundLocations);
-
         recyclerAdapter = new RecyclerFoundedLocationsAdapter(new OnFoundLocationClickListener());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -137,27 +138,16 @@ public class NewLocationActivity extends BaseActivity implements NewLocationView
         }
     }
 
-    private class EditLocationChangeListener implements TextWatcher {
+    @OnTextChanged(R.id.inputLocation)
+    public void onTextChanged() {
+        startSearchLocation.cancel();
+    }
 
-        private StartSearchLocation startSearchLocation = new StartSearchLocation(null);
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count,
-                                      int after) {
-        }
-
-        @Override
-        public void onTextChanged(final CharSequence s, int start, int before,
-                                  int count) {
-            startSearchLocation.cancel();
-        }
-
-        @Override
-        public void afterTextChanged(final Editable s) {
-            if (s.length() != 0) {
-                startSearchLocation = new StartSearchLocation(s.toString());
-                new Handler().postDelayed(startSearchLocation, 1500);
-            }
+    @OnTextChanged(value = R.id.inputLocation, callback = AFTER_TEXT_CHANGED)
+    public void afterTextChanged(Editable s) {
+        if (s.length() != 0) {
+            startSearchLocation = new StartSearchLocation(s.toString());
+            new Handler().postDelayed(startSearchLocation, 1500);
         }
     }
 
@@ -194,7 +184,7 @@ public class NewLocationActivity extends BaseActivity implements NewLocationView
 
         private Location location;
 
-        public OnPositiveButtonClickListener(Location location) {
+        OnPositiveButtonClickListener(Location location) {
             this.location = location;
         }
 
@@ -218,7 +208,7 @@ public class NewLocationActivity extends BaseActivity implements NewLocationView
 
         private Location location;
 
-        public OnNegativeButtonClickListener(Location location) {
+        OnNegativeButtonClickListener(Location location) {
             this.location = location;
         }
 

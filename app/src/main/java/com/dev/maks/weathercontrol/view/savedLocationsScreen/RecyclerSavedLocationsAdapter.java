@@ -13,6 +13,9 @@ import com.dev.maks.weathercontrol.view.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 class RecyclerSavedLocationsAdapter extends RecyclerView.Adapter<RecyclerSavedLocationsAdapter.ViewHolder> {
 
     private List<SavedLocation> itemsList = new ArrayList<>();
@@ -60,18 +63,21 @@ class RecyclerSavedLocationsAdapter extends RecyclerView.Adapter<RecyclerSavedLo
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.name)
+        TextView name;
+
+        @BindView(R.id.country)
+        TextView country;
+
         private OnItemClickListener<SavedLocation> clickListener;
         private OnItemClickListener<SavedLocation> longClickListener;
-        private TextView name;
-        private TextView country;
 
         ViewHolder(View itemView, OnItemClickListener<SavedLocation> clickListener, OnItemClickListener<SavedLocation> longClickListener) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
 
             this.clickListener = clickListener;
             this.longClickListener = longClickListener;
-            name = itemView.findViewById(R.id.name);
-            country = itemView.findViewById(R.id.country);
         }
 
         void bind(final SavedLocation location) {
@@ -90,7 +96,9 @@ class RecyclerSavedLocationsAdapter extends RecyclerView.Adapter<RecyclerSavedLo
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    longClickListener.onItemClick(location);
+                    if (longClickListener != null) {
+                        longClickListener.onItemClick(location);
+                    }
                     return true;
                 }
             });

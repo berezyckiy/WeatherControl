@@ -14,6 +14,9 @@ import com.dev.maks.weathercontrol.view.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 class RecyclerOfForecastAdapter extends RecyclerView.Adapter<RecyclerOfForecastAdapter.ViewHolder> {
 
     private List<Forecastday_> itemsList = new ArrayList<>();
@@ -66,20 +69,25 @@ class RecyclerOfForecastAdapter extends RecyclerView.Adapter<RecyclerOfForecastA
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.weekDay)
+        TextView name;
+
+        @BindView(R.id.highAndLowTemp)
+        TextView temperature;
+
+        @BindView(R.id.selected)
+        ImageView selected;
+
+        @BindView(R.id.icon)
+        ImageView icon;
+
         private OnItemClickListener<Forecastday_> listener;
-        private TextView name;
-        private TextView temperature;
-        private ImageView selected;
-        private ImageView icon;
 
         ViewHolder(View itemView, OnItemClickListener<Forecastday_> listener) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
 
             this.listener = listener;
-            name = itemView.findViewById(R.id.weekDay);
-            temperature = itemView.findViewById(R.id.highAndLowTemp);
-            selected = itemView.findViewById(R.id.selected);
-            icon = itemView.findViewById(R.id.icon);
         }
 
         void bind(final Forecastday_ forecast) {

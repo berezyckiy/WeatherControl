@@ -20,35 +20,31 @@ import com.dev.maks.weathercontrol.view.weatherOfLocation.WeatherOfLocationActiv
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class SavedLocationsActivity extends BaseActivity implements SavedLocationView {
 
-    private SavedLocationsPresenter presenter;
+    @BindView(R.id.recyclerOfLocations)
+    RecyclerView recyclerOfLocations;
 
+    private SavedLocationsPresenter presenter;
     private RecyclerSavedLocationsAdapter recyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_locations);
+        ButterKnife.bind(this);
+
         if (presenter == null) {
             presenter = new SavedLocationsPresenter(this, new DatabaseRepository(getApplicationContext()));
         }
 
-        setContentView(R.layout.activity_locations);
-
         initToolbar();
-        initFab();
         initRecycler();
-    }
-
-    private void initFab() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SavedLocationsActivity.this, NewLocationActivity.class));
-            }
-        });
     }
 
     private void buildDeleteLocationDialog(final SavedLocation location) {
@@ -64,8 +60,6 @@ public class SavedLocationsActivity extends BaseActivity implements SavedLocatio
 
     @Override
     public void initRecycler() {
-        RecyclerView recyclerOfLocations = (RecyclerView) findViewById(R.id.recyclerOfLocations);
-
         recyclerAdapter = new RecyclerSavedLocationsAdapter(new OnSavedLocationClickListener(),
                 new OnSavedLocationLongClickListener());
 
@@ -90,6 +84,11 @@ public class SavedLocationsActivity extends BaseActivity implements SavedLocatio
     @Override
     public void showSavedLocations(List<SavedLocation> savedLocations) {
         recyclerAdapter.setData(savedLocations);
+    }
+
+    @OnClick(R.id.fab)
+    public void onClick() {
+        startActivity(new Intent(SavedLocationsActivity.this, NewLocationActivity.class));
     }
 
     private class OnSavedLocationClickListener implements OnItemClickListener<SavedLocation> {

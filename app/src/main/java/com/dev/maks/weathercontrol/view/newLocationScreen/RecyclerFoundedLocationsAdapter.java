@@ -13,6 +13,10 @@ import com.dev.maks.weathercontrol.view.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 class RecyclerFoundedLocationsAdapter extends RecyclerView.Adapter<RecyclerFoundedLocationsAdapter.ViewHolder> {
 
     private List<Location> itemsList = new ArrayList<>();
@@ -57,16 +61,19 @@ class RecyclerFoundedLocationsAdapter extends RecyclerView.Adapter<RecyclerFound
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.name)
+        TextView name;
+
+        @BindView(R.id.country)
+        TextView country;
+
         private OnItemClickListener<Location> listener;
-        private TextView name;
-        private TextView country;
 
         ViewHolder(View itemView, OnItemClickListener<Location> listener) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
 
             this.listener = listener;
-            name = itemView.findViewById(R.id.name);
-            country = itemView.findViewById(R.id.country);
         }
 
         void bind(final Location location) {

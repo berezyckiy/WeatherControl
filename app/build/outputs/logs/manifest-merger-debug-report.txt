@@ -85,6 +85,7 @@ MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] C:\Users\go
 MERGED from [com.android.support:support-fragment:26.0.0-alpha1] C:\Users\govin\.android\build-cache\120e8e35b558fac37ac0ad1d84c6cb209b25a168\output\AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] C:\Users\govin\.android\build-cache\2fe5e299d2a1765ca6bfbde090c6c6e745d0a54b\output\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] C:\Users\govin\.android\build-cache\f55cf74b7a5ad450e4d968fd77d32f1a4280cd56\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.jakewharton:butterknife:8.8.1] C:\Users\govin\.android\build-cache\110adf07a00a29f237e1b7bfb47196db5be7b619\output\AndroidManifest.xml:5:5-43
 MERGED from [com.android.support:support-compat:26.0.0-alpha1] C:\Users\govin\.android\build-cache\c055fac0b182f7bcbfd27939dba17ea97e86f519\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
 		ADDED from [com.android.support:design:26.0.0-alpha1] C:\Users\govin\.android\build-cache\d073e7bfcbbdef9fed9b53349dd6588115404ddf\output\AndroidManifest.xml:23:9-59
