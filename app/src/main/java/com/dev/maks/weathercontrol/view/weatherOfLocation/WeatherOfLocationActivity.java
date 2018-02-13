@@ -23,38 +23,57 @@ import com.dev.maks.weathercontrol.view.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class WeatherOfLocationActivity extends BaseActivity
         implements WeatherOfLocationView, SwipeRefreshLayout.OnRefreshListener {
 
     private static final Character SYMBOL_CALCIUM = '\u00B0';
 
+    @BindView(R.id.precipitation)
+    TextView precipitation;
+
+    @BindView(R.id.location)
+    TextView location;
+
+    @BindView(R.id.temperature)
+    TextView temperature;
+
+    @BindView(R.id.humidity)
+    TextView humidity;
+
+    @BindView(R.id.feelsLike)
+    TextView feelsLike;
+
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    @BindView(R.id.loadingIndicator)
+    ProgressBar loadingIndicator;
+
+    @BindView(R.id.recyclerOfWeatherNextDays)
+    RecyclerView recyclerOfWeatherNextDays;
+
     private WeatherOfLocationPresenter presenter;
-
     private RecyclerOfForecastAdapter recyclerAdapter;
-    private TextView precipitation;
-    private TextView location;
-    private TextView temperature;
-    private TextView humidity;
-    private TextView feelsLike;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private ProgressBar loadingIndicator;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_weather_of_location);
+        ButterKnife.bind(this);
+
         if (presenter == null) {
             presenter = new WeatherOfLocationPresenter(this);
         }
 
-        setContentView(R.layout.activity_weather_of_location);
-
         initToolbar();
         addButtonHome();
-        initFields();
         initRecycler();
-        initLoadingIndicator();
+
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         presenter.getLocationWeather(getIntent().getStringExtra("zmw"));
     }
@@ -67,20 +86,6 @@ public class WeatherOfLocationActivity extends BaseActivity
         }
     }
 
-    private void initFields() {
-        precipitation = (TextView) findViewById(R.id.precipitation);
-        location = (TextView) findViewById(R.id.location);
-        temperature = (TextView) findViewById(R.id.temperature);
-        humidity = (TextView) findViewById(R.id.humidity);
-        feelsLike = (TextView) findViewById(R.id.feelsLike);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(this);
-    }
-
-    public void initLoadingIndicator() {
-        loadingIndicator = (ProgressBar) findViewById(R.id.loadingIndicator);
-    }
-
     private void setConditionViewsVisibility() {
         feelsLike.setVisibility(View.VISIBLE);
     }
@@ -91,8 +96,6 @@ public class WeatherOfLocationActivity extends BaseActivity
 
     @Override
     public void initRecycler() {
-        RecyclerView recyclerOfWeatherNextDays = (RecyclerView) findViewById(R.id.recyclerOfWeatherNextDays);
-
         recyclerAdapter = new RecyclerOfForecastAdapter(new OnForecastDayClickListener());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
